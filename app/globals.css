@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #f4ede0;
+  --surface: #faf6ec;
+  --ink: #1f1a14;
+  --ink-soft: rgba(31, 26, 20, 0.65);
+  --accent: #5a6b3d;
+  --accent-soft: #dfe2cc;
+  --line: rgba(31, 26, 20, 0.10);
+}
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+body {
+  font-feature-settings: 'ss01', 'ss02';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* Reveal items: fade-up with @starting-style fallback to plain visible */
+.reveal-item {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  .reveal-item {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal-item {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,6 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./app/**/*.{ts,tsx}'],
+  content: [
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}'
+  ],
   theme: {
     extend: {
       colors: {
@@ -13,7 +16,7 @@ module.exports = {
         line: 'rgba(31, 26, 20, 0.10)'
       },
       fontFamily: {
-        display: ['var(--font-fraunces)', 'Georgia', 'serif'],
+        display: ['var(--font-fraunces)', 'serif'],
         body: ['var(--font-manrope)', 'system-ui', 'sans-serif']
       },
       transitionTimingFunction: {

@@ -17,82 +17,41 @@ html, body {
   color: var(--ink);
 }
 
-::selection {
-  background-color: var(--accent);
-  color: var(--bg);
-}
+.font-display { font-family: var(--font-display), Georgia, serif; }
+.font-body { font-family: var(--font-body), system-ui, sans-serif; }
 
-.eyebrow {
-  font-family: var(--font-fraunces), serif;
-  font-style: italic;
-  font-size: 0.8125rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+.h1 { font-size: clamp(2.75rem, 7vw, 5.5rem); }
+.h2 { font-size: clamp(1.875rem, 4.5vw, 3.25rem); }
+.h3 { font-size: clamp(1.25rem, 2.5vw, 1.625rem); }
+.body-size { font-size: 1.0625rem; }
+.small-size { font-size: 0.8125rem; }
 
-.rule {
-  display: inline-block;
-  height: 1px;
-  width: 64px;
-  background-color: var(--accent);
-  transition: width 300ms cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-@media (min-width: 1024px) {
-  .group:hover .rule { width: 96px; }
-}
-
+/* reveal */
 .reveal {
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 600ms ease-out, transform 600ms cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: opacity, transform;
+  transition: opacity 400ms cubic-bezier(0.23, 1, 0.32, 1), transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { transform: none; transition: opacity 300ms ease; }
-  .rule { transition: none; }
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .reveal {
+    transform: none;
+    transition: opacity 300ms ease;
+  }
+  .reveal.is-visible { transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background-color: var(--accent);
-  color: var(--bg);
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  letter-spacing: 0.01em;
-  transition: transform 150ms ease-out, background-color 200ms ease;
+/* Focus ring consistente */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 2px;
 }
-.btn-primary:hover { background-color: #4a5a31; }
-.btn-primary:active { transform: scale(0.97); }
-.btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  padding: 1rem 1.75rem;
-  border-radius: 999px;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  background-color: transparent;
-  transition: transform 150ms ease-out, background-color 200ms ease, color 200ms ease;
-}
-.btn-secondary:hover { background-color: var(--accent); color: var(--bg); }
-.btn-secondary:active { transform: scale(0.97); }
-.btn-secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
